@@ -1,0 +1,20 @@
+<div>
+    <form [formGroup]="idForm">
+
+        <div *ngFor="let item of documentFormData">
+            <label [attr.for]="item.property">{{item.label}}</label>
+            <div [ngSwitch]="item.type">
+                <input *ngSwitchCase="'text'" [formControlName]="item.property" [id]="item.property"
+                    [type]="item.type">
+
+                <select [id]="item.property" *ngSwitchCase="'drop-down'" [formControlName]="item.property">
+                    <option *ngFor="let opt of item.dropDownValues" [value]="opt.value">{{opt.label}}</option>
+                </select>
+
+                <input *ngSwitchCase="'date'" [formControlName]="item.property" [id]="item.property"
+                    [type]="item.type">
+            </div>
+            <!-- <div class="errorMessage" *ngIf="!isValid">{{item.label}} is required</div> -->
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row w-100 vh-100 justify-content-center align-items-center">
+        <div class="auth-box">
+            <!--Sign-Up-->
+            <div *ngIf="!isConfirm">
+                <div class="header">
+                    <h2>Register</h2>
+                    <h4>Register your account using below information</h4>
+                </div>
+                <div class="form">
+                    <input type="text" name="givenName" [(ngModel)]="user.givenName" placeholder="First Name">
+                    <input type="text" name="familyName" [(ngModel)]="user.familyName" placeholder="Last Name">
+                    <input type="text" name="email" [(ngModel)]="user.email" placeholder="Email Address">
+                    <input [type]="user.showPassword ? 'text' : 'password'" name="password" [(ngModel)]="user.password"
+                        placeholder="Password">
+                    <div style="font-size: 12px; margin: 8px 0;">
+                        <input type="checkbox" [checked]="user.showPassword"
+                            (change)="user.showPassword = !user.showPassword">
+                        Show Password
+                    </div>
+                    <p>Already a member? <a href="/signin">sign-in</a></p>
+                    <button (click)="signUpWithCognito()">Register</button>
+                </div>
+            </div>
+            <!--Confirm Sign-Up-->
+            <div *ngIf="isConfirm">
+                <div class="header">
+                    <h2>Enter the code</h2>
+                    <h4 style="color: green;">A verification email sent to {{user.email}}</h4>
+                </div>
+                <div class="form">
+                    <input type="text" name="verificationCode" placeholder="Enter verification code"
+                        [(ngModel)]="user.code">
+                    <button (click)="confirmSignUp()">CONFIRM</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal-->
+<app-message-modal *ngIf="showAlert" (modalClose)="showAlert=false" [message]="alertMessage"></app-message-modal>

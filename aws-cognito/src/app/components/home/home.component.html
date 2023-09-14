@@ -1,0 +1,13 @@
+<div class="navigation">
+    <a href="" class="button">
+        <img src="assets/profile.png">
+        <div class="logout" (click)="signOutWithCognito()">LOGOUT</div>
+    </a>
+</div>
+
+<div class="user-content">
+    <h2>hello</h2>
+</div>
+
+<!-- Modal-->
+<app-message-modal *ngIf="showAlert" (modalClose)="showAlert=false" [message]="alertMessage"></app-message-modal>
